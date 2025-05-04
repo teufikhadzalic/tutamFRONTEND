@@ -17,11 +17,7 @@ const ProgramDetail = () => {
 
   const fetchProgram = async () => {
     try {
-      // In a real app, this would fetch from the backend
-      // const response = await getProgram(id);
-      // setProgram(response.data);
-
-      // For now, we'll use mock data
+      
       setTimeout(() => {
         setProgram({
           id: Number.parseInt(id),
