@@ -131,6 +131,7 @@
   .delete-button:hover {
     background-color: #ffebee;
   }
+
   
   @media (max-width: 768px) {
     .programs-header {
