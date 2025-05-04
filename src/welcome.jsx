@@ -51,7 +51,7 @@ const Welcome = () => {
       <div className="contact-section" id="contact">
         <h2>Contact Us</h2>
         <p>Have questions? Reach out to us!</p>
-        <p>Email: support@fittrack.com</p>
+        <p>Email: support@Mentzertrack.com</p>
         <p>Phone: +1 800 123 4567</p>
       </div>
     </div>
