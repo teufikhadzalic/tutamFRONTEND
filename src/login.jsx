@@ -19,6 +19,15 @@ const Login = () => {
     setError("")
     setSuccess("")
 
+
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  if (!passwordRegex.test(password)) {
+    setError(
+      "Password must be at least 8 characters long, include one uppercase letter, one lowercase letter, one number, and one special character (e.g., @, $, !, etc.)."
+    );
+    return;
+  }
+
     try {
       if (isRegister) {
         const response = await registerUser({ name, email, password })
