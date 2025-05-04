@@ -28,53 +28,43 @@ const CreateProgram = () => {
     setExercises(newExercises);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    // Validate form
-    if (!title.trim()) {
-      setError("Program title is required");
-      return;
-    }
-
-    if (!goal.trim()) {
-      setError("Program goal is required");
-      return;
-    }
-
-    if (exercises.some((ex) => !ex.name.trim())) {
-      setError("All exercises must have a name");
-      return;
-    }
-
-    setLoading(true);
-    setError("");
-
-    try {
-           const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/programs`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title, goal, exercises }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to create program");
-      }
-
-      const data = await response.json();
-      console.log("Program created:", data);
-
-      
-      navigate("/programs");
-    } catch (err) {
-      console.error("Error creating program:", err);
-      setError("Failed to create program. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+  const programData = {
+    title,
+    goal,
+    exercises,
   };
+
+  console.log("Sending data to backend:", programData); // Log data yang dikirim
+
+  try {
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/programs`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(programData),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Error response from backend:", errorData); // Log error dari backend
+      throw new Error(errorData.error || "Failed to create program");
+    }
+
+    const data = await response.json();
+    console.log("Program created:", data);
+
+    navigate("/programs");
+  } catch (err) {
+    console.error("Error creating program:", err);
+    setError("Failed to create program. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="create-program-container">
