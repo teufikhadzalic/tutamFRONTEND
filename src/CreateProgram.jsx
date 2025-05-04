@@ -67,7 +67,7 @@ const CreateProgram = () => {
       const data = await response.json();
       console.log("Program created:", data);
 
-      // Redirect to the programs list page
+      
       navigate("/programs");
     } catch (err) {
       console.error("Error creating program:", err);
