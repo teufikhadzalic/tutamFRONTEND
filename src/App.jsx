@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Navbar from "./navbar" // Perbaiki jalur impor
-import Welcome from "./welcome" // Perbaiki jalur impor
-import Login from "./login" // Perbaiki jalur impor
-import Dashboard from "./dashboard" // Perbaiki jalur impor
-import WorkoutPrograms from "./WorkoutPrograms" // Perbaiki jalur impor
-import CreateProgram from "./CreateProgram" // Perbaiki jalur impor
-import ProgramDetail from "./ProgramDetail" // Perbaiki jalur impor
-import ProtectedRoute from "./ProtectedRoute" // Perbaiki jalur impor
+import Navbar from "./navbar" 
+import Welcome from "./welcome" 
+import Login from "./login" 
+import Dashboard from "./dashboard" 
+import WorkoutPrograms from "./WorkoutPrograms" 
+import CreateProgram from "./CreateProgram" 
+import ProgramDetail from "./ProgramDetail"
+import ProtectedRoute from "./ProtectedRoute" 
 import "./App.css"
 
 function App() {
