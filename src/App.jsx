@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Navbar from "./navbar" // Perbaiki jalur impor
 import Welcome from "./welcome" // Perbaiki jalur impor
 import Login from "./login" // Perbaiki jalur impor
-import Dashboard from "./Dashboard" // Perbaiki jalur impor
+import Dashboard from "./dashboard" // Perbaiki jalur impor
 import WorkoutPrograms from "./WorkoutPrograms" // Perbaiki jalur impor
 import CreateProgram from "./CreateProgram" // Perbaiki jalur impor
 import ProgramDetail from "./ProgramDetail" // Perbaiki jalur impor
