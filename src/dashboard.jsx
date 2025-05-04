@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import "./Dashboard.css"
+import "./dashboard.css"
 
 const Dashboard = () => {
   const user = JSON.parse(localStorage.getItem("user"))
