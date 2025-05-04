@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getPrograms } from "./api"; // Pastikan ini mengarah ke API yang benar
+import { getPrograms } from "./api"; 
 import "./WorkoutPrograms.css";
 
 const WorkoutPrograms = () => {
