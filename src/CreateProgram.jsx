@@ -51,11 +51,10 @@ const CreateProgram = () => {
     setError("");
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/programs`, {
+           const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/programs`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({ title, goal, exercises }),
       });
