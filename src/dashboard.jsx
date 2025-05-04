@@ -1,55 +1,74 @@
-import React, { useEffect, useState } from "react";
-import "./dashboard.css";
-import { getAllItems } from "./api";
+"use client"
+
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
+import "./Dashboard.css"
 
 const Dashboard = () => {
-  const user = JSON.parse(localStorage.getItem("user")); // Ambil data pengguna dari localStorage
-  const [items, setItems] = useState([]); // State untuk menyimpan item
-  const [error, setError] = useState("");
+  const user = JSON.parse(localStorage.getItem("user"))
+  const [stats, setStats] = useState({
+    totalPrograms: 0,
+    activePrograms: 0,
+    completedWorkouts: 0,
+  })
 
   useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const response = await getAllItems();
-        setItems(response.data.payload); // Simpan item ke state
-      } catch (err) {
-        console.error("Error fetching items:", err);
-        setError("Failed to load items.");
-      }
-    };
-
-    fetchItems();
-  }, []);
+    // This would normally fetch data from the backend
+    // For now, we'll use mock data
+    setStats({
+      totalPrograms: 5,
+      activePrograms: 2,
+      completedWorkouts: 12,
+    })
+  }, [])
 
   return (
     <div className="dashboard-container">
-      <h1>Welcome to the Dashboard</h1>
-      {user && (
-        <div className="user-info">
-          <p><strong>Name:</strong> {user.name}</p>
-          <p><strong>Email:</strong> {user.email}</p>
-          <p><strong>Balance:</strong> ${user.balance}</p>
-        </div>
-      )}
+      <h1>Welcome to your Dashboard, {user?.name || "User"}</h1>
 
-      <h2>All Items Sold</h2>
-      {error && <p className="error-message">{error}</p>}
-      <div className="items-list">
-        {items.length > 0 ? (
-          items.map((item) => (
-            <div key={item.id} className="item-card">
-              <h3>{item.name}</h3>
-              <p>{item.description}</p>
-              <p><strong>Price:</strong> ${item.price}</p>
-              <p><strong>Stock:</strong> {item.stock}</p>
-            </div>
-          ))
-        ) : (
-          <p>No items available.</p>
-        )}
+      <div className="stats-container">
+        <div className="stat-card">
+          <h3>Total Programs</h3>
+          <p className="stat-number">{stats.totalPrograms}</p>
+        </div>
+        <div className="stat-card">
+          <h3>Active Programs</h3>
+          <p className="stat-number">{stats.activePrograms}</p>
+        </div>
+        <div className="stat-card">
+          <h3>Completed Workouts</h3>
+          <p className="stat-number">{stats.completedWorkouts}</p>
+        </div>
+      </div>
+
+      <div className="dashboard-actions">
+        <Link to="/programs" className="dashboard-button">
+          View My Programs
+        </Link>
+        <Link to="/programs/create" className="dashboard-button primary">
+          Create New Program
+        </Link>
+      </div>
+
+      <div className="recent-activity">
+        <h2>Recent Activity</h2>
+        <div className="activity-list">
+          <div className="activity-item">
+            <p>You completed "Leg Day" workout</p>
+            <span className="activity-date">2 days ago</span>
+          </div>
+          <div className="activity-item">
+            <p>You created a new program "Summer Shred"</p>
+            <span className="activity-date">5 days ago</span>
+          </div>
+          <div className="activity-item">
+            <p>You completed "Upper Body" workout</p>
+            <span className="activity-date">1 week ago</span>
+          </div>
+        </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard

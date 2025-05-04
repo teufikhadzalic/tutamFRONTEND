@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import "./welcome.css";
+import { Link } from "react-router-dom"
+import "./Welcome.css"
 
 const Welcome = () => {
   return (
@@ -8,40 +8,41 @@ const Welcome = () => {
       <div className="hero-section">
         <div className="hero-content">
           <h1>
-            Welcome to <span className="nvidia-text">NVIDIA</span>
+            Welcome to <span className="brand-text">MentzerTrack!</span>
           </h1>
-          <p className="hero-description">
-            Discover cutting-edge GPUs and gaming experiences that redefine performance.
-          </p>
+          <p className="hero-description">Inspired by the legend Mike Mentzer we created an app where you can create and track your workout programs to achieve your fitness goals.</p>
           <div className="cta-buttons">
-            <Link to="/shop" className="cta-button primary">
-              Shop Now
-            </Link>
+            {localStorage.getItem("token") ? (
+              <Link to="/programs" className="cta-button primary">
+                My Programs
+              </Link>
+            ) : (
+              <Link to="/login" className="cta-button primary">
+                Get Started
+              </Link>
+            )}
             <a href="#features" className="cta-button secondary">
               Learn More
             </a>
           </div>
         </div>
-        <div className="hero-image">
-          {/* Hapus elemen gambar */}
-        </div>
       </div>
 
       {/* Features Section */}
       <div className="features-section" id="features">
-        <h2>Why Choose NVIDIA?</h2>
+        <h2>Why Choose FitTrack?</h2>
         <div className="features-grid">
           <div className="feature-card">
-            <h3>Unmatched Performance</h3>
-            <p>Experience the power of the latest GPU technology.</p>
+            <h3>Personalized Programs</h3>
+            <p>Create custom workout programs tailored to your specific goals.</p>
           </div>
           <div className="feature-card">
-            <h3>Immersive Gaming</h3>
-            <p>Enjoy ray tracing and AI-powered DLSS for next-gen gaming.</p>
+            <h3>Exercise details</h3>
+            <p>Access a wide range of exercises with detailed instructions.</p>
           </div>
           <div className="feature-card">
-            <h3>Professional Tools</h3>
-            <p>Empower creators with industry-leading hardware and software.</p>
+            <h3>Progress tracking</h3>
+            <p>Monitor your fitness journey and celebrate your achievements.</p>
           </div>
         </div>
       </div>
@@ -50,11 +51,11 @@ const Welcome = () => {
       <div className="contact-section" id="contact">
         <h2>Contact Us</h2>
         <p>Have questions? Reach out to us!</p>
-        <p>Email: support@nvidia.com</p>
+        <p>Email: support@fittrack.com</p>
         <p>Phone: +1 800 123 4567</p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Welcome;
+export default Welcome

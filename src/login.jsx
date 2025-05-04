@@ -1,43 +1,46 @@
-import { useState } from "react";
-import { loginUser, registerUser } from "./api";
-import { useNavigate } from "react-router-dom";
-import "./login.css";
+"use client"
+
+import { useState } from "react"
+import { loginUser, registerUser } from "./api"
+import { useNavigate } from "react-router-dom"
+import "./login.css"
 
 const Login = () => {
-  const [isRegister, setIsRegister] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const navigate = useNavigate();
+  const [isRegister, setIsRegister] = useState(false)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [name, setName] = useState("")
+  const [error, setError] = useState("")
+  const [success, setSuccess] = useState("")
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setSuccess("");
+    e.preventDefault()
+    setError("")
+    setSuccess("")
 
     try {
       if (isRegister) {
-        const response = await registerUser({ name, email, password });
-        setSuccess("Registration successful! Please log in.");
-        console.log("Register successful:", response.data);
+        const response = await registerUser({ name, email, password })
+        setSuccess("Registration successful! Please log in.")
+        console.log("Register successful:", response.data)
       } else {
-        const response = await loginUser({ email, password });
-        setSuccess("Login successful!");
-        console.log("Login successful:", response.data);
+        const response = await loginUser({ email, password })
+        setSuccess("Login successful!")
+        console.log("Login successful:", response.data)
 
-        // Simpan token ke localStorage
-        localStorage.setItem("token", response.data.token);
+        // Simpan token dan data pengguna ke localStorage
+        localStorage.setItem("token", response.data.token)
+        localStorage.setItem("user", JSON.stringify(response.data.user))
 
         // Arahkan pengguna ke halaman dashboard
-        navigate("/dashboard");
+        navigate("/dashboard")
       }
     } catch (err) {
-      console.error(err.response?.data?.message || err.message);
-      setError(err.response?.data?.message || "An error occurred.");
+      console.error(err.response?.data?.message || err.message)
+      setError(err.response?.data?.message || "An error occurred.")
     }
-  };
+  }
 
   return (
     <div className="login-container">
@@ -90,9 +93,9 @@ const Login = () => {
           <span
             className="toggle-link"
             onClick={() => {
-              setIsRegister(!isRegister);
-              setError("");
-              setSuccess("");
+              setIsRegister(!isRegister)
+              setError("")
+              setSuccess("")
             }}
           >
             {isRegister ? "Login here" : "Register here"}
@@ -100,37 +103,7 @@ const Login = () => {
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError("");
-  setSuccess("");
-
-  try {
-    if (isRegister) {
-      const response = await registerUser({ name, email, password });
-      setSuccess("Registration successful! Please log in.");
-      console.log("Register successful:", response.data);
-    } else {
-      const response = await loginUser({ email, password });
-      setSuccess("Login successful!");
-      console.log("Login successful:", response.data);
-
-      // Simpan token dan data pengguna ke localStorage
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.user));
-
-      // Arahkan pengguna ke halaman dashboard
-      navigate("/dashboard");
-    }
-  } catch (err) {
-    console.error(err.response?.data?.message || err.message);
-    setError(err.response?.data?.message || "An error occurred.");
-  }
-};
-
-
-
-export default Login;
+export default Login

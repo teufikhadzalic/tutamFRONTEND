@@ -1,23 +1,26 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import "./Navbar.css";
+"use client"
+
+import { useState } from "react"
+import { Link } from "react-router-dom"
+import "./Navbar.css"
 
 function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+    setMenuOpen(!menuOpen)
+  }
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.href = "/login";
-  };
+    localStorage.removeItem("token")
+    localStorage.removeItem("user")
+    window.location.href = "/login"
+  }
 
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <Link to="/">NVIDIA</Link>
+        <Link to="/">MentzerTrack</Link>
       </div>
 
       <div className="mobile-menu-button" onClick={toggleMenu}>
@@ -32,22 +35,24 @@ function Navbar() {
             Home
           </Link>
         </li>
-        <li>
-          <Link to="/shop" onClick={() => setMenuOpen(false)}>
-            Shop
-          </Link>
-        </li>
-        <li>
-          <Link to="/about" onClick={() => setMenuOpen(false)}>
-            About
-          </Link>
-        </li>
         {localStorage.getItem("token") ? (
-          <li>
-            <button onClick={handleLogout} className="logout-button">
-              Logout
-            </button>
-          </li>
+          <>
+            <li>
+              <Link to="/dashboard" onClick={() => setMenuOpen(false)}>
+                Dashboard
+              </Link>
+            </li>
+            <li>
+              <Link to="/programs" onClick={() => setMenuOpen(false)}>
+                Workout Programs
+              </Link>
+            </li>
+            <li>
+              <button onClick={handleLogout} className="logout-button">
+                Logout
+              </button>
+            </li>
+          </>
         ) : (
           <li>
             <Link to="/login" onClick={() => setMenuOpen(false)}>
@@ -57,7 +62,7 @@ function Navbar() {
         )}
       </ul>
     </nav>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar
