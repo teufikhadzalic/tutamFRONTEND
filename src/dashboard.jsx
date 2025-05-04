@@ -13,8 +13,7 @@ const Dashboard = () => {
   })
 
   useEffect(() => {
-    // This would normally fetch data from the backend
-    // For now, we'll use mock data
+    
     setStats({
       totalPrograms: 5,
       activePrograms: 2,
